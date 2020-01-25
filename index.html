@@ -88,30 +88,38 @@
 <div class="main main-2"></div>
 </div>
 <script>
-    function renderText(textstring) {
+    function renderText(textstring){
   document.querySelector(".main-2").innerHTML = "";
   var delay = 0.05;
   var x = 0;
-  (textstring.length > 50 ? textstring.substring(0, 50) + "..." : textstring).split("").forEach(function (char) {
+  (textstring.length > 50 ? textstring.substring(0, 50) + "..." : textstring).split("").forEach(function(char){
     var d1 = document.createElement("div");
     d1.className = "char";
     d1.innerHTML = char.toLowerCase();
-    setTimeout(function () {
+    setTimeout(function(){
       d1.classList.add("show");
-    }, x * delay * 1000);
+    }, x*delay*1000);
     document.querySelector(".main-2").appendChild(d1);
     x++;
   });
 }
 
-window.onload = function () {
+window.onload = function(){
   renderText("enter text above then press the enter key");
-  document.querySelector(".main-input").onchange = function () {
+  document.querySelector(".main-input").onchange = function(){
     renderText(document.querySelector(".main-input").value);
     document.querySelector(".main-input").value = "";
   };
+  var query = {};
+  var s1 = window.location.search.substring(1).split("&");
+  s1.forEach(function(s2){
+    var s3 = s2.split("=");
+    query[decodeURIComponent(s2[0])] = decodeURIComponent(s2[1]);
+  });
+  if (query.text) {
+    renderText(query.text);
+  }
 };
-    //# sourceURL=pen.js
   </script>
 </body>
 </html>
