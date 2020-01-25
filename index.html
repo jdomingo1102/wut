@@ -114,7 +114,7 @@ window.onload = function(){
   var s1 = window.location.search.substring(1).split("&");
   s1.forEach(function(s2){
     var s3 = s2.split("=");
-    query[decodeURIComponent(s2[0])] = decodeURIComponent(s2[1]);
+    query[decodeURIComponent(s3[0])] = decodeURIComponent(s3[1]);
   });
   if (query.text) {
     renderText(query.text);
